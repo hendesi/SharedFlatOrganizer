@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SVProgressHUD
 
 class OnboardingViewController: UIViewController {
     
@@ -61,10 +62,7 @@ class OnboardingViewController: UIViewController {
             
             usernameTextField.topAnchor.constraint(equalTo: profileView.bottomAnchor, constant: 32),
             usernameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            usernameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-            
-//            submitButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            submitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -64)
+            usernameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
         ])
         submitButton.addTarget(self, action: #selector(didTapSubmitButton), for: .touchUpInside)
         submitButton.isEnabled = false
@@ -77,22 +75,13 @@ class OnboardingViewController: UIViewController {
     }
     
     @objc func didTapSubmitButton() {
-        //TODO: API call to create user
+        SVProgressHUD.show()
         let user = User(name: usernameTextField.text, pictureData: profileView.backgroundImage(for: .normal)?.jpeg(.lowest))
         UserAPI.createDemoData(with: user, completion: { users in
             let observableAngles = TaskAPI.getAngles(for: users)
-//            var observableAngles: [ObservableAngle] = []
-//            let start: Double = 45
-//            let quarter: Double = 90
-//            let taskMultiplier: Double = 3
-//            users.enumerated().forEach { index, user in
-//                observableAngles.append(contentsOf: user.currentObjectives.enumerated().map { taskIndex, task in
-//                    let value = start + (quarter * Double(index+1)) + (Double(taskIndex) * taskMultiplier)
-//                    return ObservableAngle(value, color: task.color)
-//                })
-//            }
             let mainVC = MainViewController(observableAngles)
             mainVC.overallUsers = users
+            SVProgressHUD.dismiss()
             self.navigationController?.pushViewController(mainVC, animated: true)
         })
     }
