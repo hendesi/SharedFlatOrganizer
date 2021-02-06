@@ -10,11 +10,12 @@ import Apodini
 import ApodiniNotifications
 import NIO
 
-struct RegisterDevice: Handler {
+struct RegisterDeviceHandler: Handler {
     @Parameter(.http(.path))
     var userId: User.IDValue
 
-    @Environment(\.notificationCenter) var notificationCenter: ApodiniNotifications.NotificationCenter
+    @Environment(\.notificationCenter)
+    var notificationCenter: ApodiniNotifications.NotificationCenter
     
     func handle() throws -> EventLoopFuture<Response<String>> {
         notificationCenter

@@ -41,41 +41,14 @@ struct UpdateTasksForUserHandler: Handler {
         ).flatMap { _ in
             User.query(on: database).all()
         }
-//        User
-//            .find(userID, on: database)
-//            .unwrap(or: userNotFoundError)
-//            .flatMap { user in
-//                let newObjectives = user.currentObjectiveIDs.removeCollection(tasks.compactMap { $0.id})
-//                user.currentObjectiveIDs = newObjectives
-//                return user.update(on: database).transform(to: user)
-//            }
-        
     }
-    
-    
-//    func handle() throws -> EventLoopFuture<[User]> {
-//        eventLoopGroup.next().flatten(
-//            [
-//                try updateCurrentUser(),
-//                try updateFollowingUser()
-//            ]
-//        ).flatMap { _ in
-//            User.query(on: database).all()
-//        }
-//    }
     
     private func updateCurrentUser() throws -> EventLoopFuture<User> {
         User.find(userID, on: database)
             .unwrap(or: userNotFoundError)
             .flatMap { user in
-                print("user")
-                print(user)
-                print("before")
-                print(user.currentObjectiveIDs)
                 let newObjectives = user.currentObjectiveIDs.removeCollection(tasks.compactMap { $0.id})
                 user.currentObjectiveIDs = newObjectives
-                print("after")
-                print(user.currentObjectiveIDs)
                 return user.update(on: database).transform(to: user)
             }
     }
@@ -91,28 +64,6 @@ struct UpdateTasksForUserHandler: Handler {
                     return nextUser.update(on: database).transform(to: nextUser)
             }
         }
-//        User.query(on: database).all().flatMapThrowing { users in
-//            for (index, user) in users.enumerated() {
-//                if user.id == userID {
-//                    let modIndex = (index + 1) % users.count
-//                    let nextUser = users[modIndex]
-//                    nextUser.currentObjectiveIDs.append(contentsOf: tasks.compactMap { $0.id} )
-//                    return nextUser.update(on: database).transform(to: nextUser)
-//                }
-//            }
-//        }
-//        guard let nextUser = nextUser else { throw userNotFoundError }
-//        return User.find(userID, on: database)
-//
-//            .flatMap { user in
-//                User.find(nextUser.id, on: database)
-//                    .unwrap(or: userNotFoundError)
-//                    .flatMap { nextFoundUser in
-//                        nextFoundUser.currentObjectiveIDs.append(contentsOf: user.currentObjectiveIDs)
-//                        return nextFoundUser.update(on: database).transform(to: nextFoundUser)
-//                    }
-//            }
-        
     }
     
     private func nextUser(in users: [User]) -> User? {

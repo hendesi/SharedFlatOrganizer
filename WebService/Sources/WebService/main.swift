@@ -10,31 +10,21 @@ struct TestWebService: Apodini.WebService {
         Group("api", "users") {
             CreateAll<User>()
                 .operation(.create)
+                .response(SequenceTransformer())
             Group($userId) {
                 ReadAll<User>()
                     .operation(.read)
                     .response(FilterTransformer($userId))
                 UpdateTasksForUserHandler(userID: $userId)
                     .operation(.update)
+                    .response(SequenceTransformer())
             }
         }
         Group("api", "tasks") {
             CreateAll<Task>()
                 .operation(.create)
-            UpdateUsersWithInitialTasks()
+            UpdateUsersWithInitialTasksHandler()
                 .operation(.update)
-        }
-        Group("api", "dummy", $userId) {
-            ReadAll<User>()
-                .operation(.read)
-                .response(SequenceTransformer())
-        }
-        Group("api", "demo", "users") {
-            CreateUsersWithTaskHandler()
-                .operation(.create)
-        }
-        Group("api", "demo", "devices") {
-            RegisterDevice()
         }
     }
     

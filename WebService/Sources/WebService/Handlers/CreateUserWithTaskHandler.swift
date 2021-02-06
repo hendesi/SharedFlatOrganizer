@@ -25,24 +25,12 @@ struct CreateUsersWithTaskHandler: Handler {
     }
     
     func handle() throws -> EventLoopFuture<[User]> {
-//        return eventLoopGroup.next().flatten(
-//                sortedUsers.enumerated().map { index, user in
-//                    if let id = taskss[index].id {
-//                        user.currentObjectiveIDs.append(id)
-//                    }
-//                    print("user")
-//                    print(user)
-//                    return user.save(on: database).transform(to: user)
-//                }
-//            )
         Task.query(on: database).all().flatMap { tasks in
             eventLoopGroup.next().flatten(
                 sortedUsers.enumerated().map { index, user in
                     if let id = tasks[index].id {
                         user.currentObjectiveIDs.append(id)
                     }
-                    print("user")
-                    print(user)
                     return user.save(on: database).transform(to: user)
                 }
             )

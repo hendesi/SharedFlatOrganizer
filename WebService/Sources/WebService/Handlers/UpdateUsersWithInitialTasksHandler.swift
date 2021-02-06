@@ -10,7 +10,7 @@ import Apodini
 import Fluent
 import NIO
 
-struct UpdateUsersWithInitialTasks: Handler {
+struct UpdateUsersWithInitialTasksHandler: Handler {
     @Apodini.Environment(\.database)
     private var database: Database
     
@@ -30,15 +30,13 @@ struct UpdateUsersWithInitialTasks: Handler {
     func handle() throws -> EventLoopFuture<[User]> {
         print(users)
         return Task.query(on: database).all().flatMap { tasks in
-            print(tasks)
-            return eventLoopGroup.next().flatten(
+            eventLoopGroup.next().flatten(
                 sortedUsers.enumerated().map { index, user in
                     User
                         .find(user.id, on: database)
                         .unwrap(or: userNotFoundError)
                         .flatMap { foundUser in
                             if let id = tasks[index].id {
-//                                user.currentObjectiveIDs.append(id)
                                 foundUser.currentObjectiveIDs.append(id)
                             }
                             return foundUser.update(on: database).transform(to: foundUser)
