@@ -68,15 +68,6 @@ struct User: Codable {
         try values.encode(pictureData, forKey: .pictureData)
         try values.encode(currentObjectiveIDs, forKey: .currentObjectiveIDs)
     }
-    
-    func prepared() -> User {
-        var user = self
-        return self
-    }
-    
-    static func dummyUser() -> User {
-        User(name: "DummyUser", currentObjectiveIDs: [])
-    }
 }
 
 struct UserWrapper: Codable {

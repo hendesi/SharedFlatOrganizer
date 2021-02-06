@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     let finishButton = Button().apply({
         $0.image = UIImage(systemName: "checkmark")
@@ -49,7 +49,7 @@ class ViewController: UIViewController {
     
     var users: [User] {
         guard let id = Storage.shared.user?.id else { fatalError("no user set in storage") }
-        return overallUsers.filter({ $0.id != id }).sorted { $0.name < $1.name }
+        return overallUsers.filter({ $0.id != id }).sorted { $0.name < $1.name }
     }
     var overallUsers: [User] = []
     
@@ -66,23 +66,10 @@ class ViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        UserAPI.getUsers(success: { users in
-//            guard let id = Storage.shared.user?.id else { fatalError("no user set in storage") }
-//            self.users = users.filter { $0.id != Storage.shared.user?.id }
-//            self.usersTableView.reloadData()
-//        }, failure: { error in
-//            print("Could not load users. \(error?.localizedDescription)")
-//        })
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         setupUI()
-        print("user")
-        print(Storage.shared.user)
     }
     
     private func reloadTableViews() {
@@ -101,10 +88,6 @@ class ViewController: UIViewController {
                                                 )
         navLabel.attributedText = navTitle
         self.navigationItem.titleView = navLabel
-        
-        let addBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .done, target: self, action: #selector(didTapAddButton))
-        addBarButtonItem.tintColor = ColorCatalog.primaryColor
-        self.navigationItem.rightBarButtonItem = addBarButtonItem
         self.navigationItem.hidesBackButton = true
     }
     
@@ -115,6 +98,7 @@ class ViewController: UIViewController {
         clockViewController.view.frame = self.view.bounds
         
         finishButton.addTarget(self, action: #selector(didTapFinishButton), for: .touchUpInside)
+        finishButton.isEnabled = !Storage.shared.finishedTasks.isEmpty
         
         usersTableView.dataSource = self
         usersTableView.delegate = self
@@ -161,10 +145,6 @@ class ViewController: UIViewController {
         self.addChild(clockViewController)
     }
     
-    @objc func didTapAddButton() {
-
-    }
-    
     @objc func didTapFinishButton() {
         let user = Storage.shared.user
         UserAPI.updateUser(user, success: { users in
@@ -172,19 +152,26 @@ class ViewController: UIViewController {
                   let newCurrentUser = users.first(where: { $0.id == currentUserID })
             else { fatalError("failed to retrieve id of the current user") }
             Storage.shared.user = newCurrentUser
+            Storage.shared.finishedTasks = []
             self.myTasks = Storage.shared.user?.currentObjectives ?? []
             self.overallUsers = users
             
-            self.observableAnglesWrapper.observableAngles = TaskAPI.getAngles(for: users)
-            self.view.layoutSubviews()
-            self.reloadTableViews()
+            self.updateViews()
         }, failure: { error in
             
         })
     }
+    
+    private func updateViews() {
+        self.observableAnglesWrapper.observableAngles = TaskAPI.getAngles(for: self.overallUsers)
+        self.view.layoutSubviews()
+        self.reloadTableViews()
+        
+        self.finishButton.isEnabled = !Storage.shared.finishedTasks.isEmpty
+    }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView.tag {
         case 0:
@@ -232,11 +219,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? YourTaskTableViewCell, tableView.tag == 1 else { return }
         cell.markAsDone()
+        finishButton.isEnabled = !Storage.shared.finishedTasks.isEmpty
     }
 }
 
 //MARK: - TableView methods for UsersTableView
-extension ViewController {
+extension MainViewController {
     func cellForUserTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: UsersTableViewCell.identifier, for: indexPath) as? UsersTableViewCell
         else { return UITableViewCell() }
@@ -263,7 +251,7 @@ extension ViewController {
 }
 
 //MARK: - TableView methods for MyTaskTableView
-extension ViewController {
+extension MainViewController {
     func cellForMyTaskTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: YourTaskTableViewCell.identifier, for: indexPath) as? YourTaskTableViewCell
         else { return UITableViewCell() }
@@ -305,7 +293,7 @@ extension ViewController {
 }
 
 //MARK: - TableView methods for AllTaskTableView
-extension ViewController {
+extension MainViewController {
     func cellForAllTaskTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AllTaskTableViewCell.identifier, for: indexPath) as? AllTaskTableViewCell
         else { return UITableViewCell() }

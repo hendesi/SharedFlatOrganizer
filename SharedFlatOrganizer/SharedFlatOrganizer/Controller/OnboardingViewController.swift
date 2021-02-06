@@ -43,7 +43,7 @@ class OnboardingViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
         let navLabel = UILabel()
-        let navTitle = NSMutableAttributedString(string: "👨 New Profile", attributes:[
+        let navTitle = NSMutableAttributedString(string: "New Profile", attributes:[
                                                     NSAttributedString.Key.foregroundColor: ColorCatalog.primaryColor,
                                                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25.0, weight: UIFont.Weight.medium)]
                                                 )
@@ -91,7 +91,7 @@ class OnboardingViewController: UIViewController {
 //                    return ObservableAngle(value, color: task.color)
 //                })
 //            }
-            let mainVC = ViewController(observableAngles)
+            let mainVC = MainViewController(observableAngles)
             mainVC.overallUsers = users
             self.navigationController?.pushViewController(mainVC, animated: true)
         })

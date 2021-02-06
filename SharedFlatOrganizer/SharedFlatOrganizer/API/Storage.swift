@@ -74,10 +74,7 @@ class Storage {
     }
     
     func findTaskById(_ identifier: UUID) -> Task? {
-        print(identifier)
-        print("--")
         for task in self.tasks {
-            print(task)
             if let foundTask = task.findById(identifier) {
                 return foundTask
             }

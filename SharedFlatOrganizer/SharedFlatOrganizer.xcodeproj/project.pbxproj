@@ -14,18 +14,19 @@
 		1E698CE425C01DCF006773B2 /* AllTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E698CE325C01DCF006773B2 /* AllTaskTableViewCell.swift */; };
 		1E6FF02B25BB2EC600EF2822 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FF02A25BB2EC600EF2822 /* AppDelegate.swift */; };
 		1E6FF02D25BB2EC600EF2822 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FF02C25BB2EC600EF2822 /* SceneDelegate.swift */; };
-		1E6FF02F25BB2EC600EF2822 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FF02E25BB2EC600EF2822 /* ViewController.swift */; };
+		1E6FF02F25BB2EC600EF2822 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FF02E25BB2EC600EF2822 /* MainViewController.swift */; };
 		1E6FF03225BB2EC600EF2822 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E6FF03025BB2EC600EF2822 /* Main.storyboard */; };
 		1E6FF03425BB2ECA00EF2822 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E6FF03325BB2ECA00EF2822 /* Assets.xcassets */; };
 		1E6FF03725BB2ECA00EF2822 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E6FF03525BB2ECA00EF2822 /* LaunchScreen.storyboard */; };
 		1E6FF06025BB358C00EF2822 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FF05F25BB358C00EF2822 /* ClockView.swift */; };
-		1E6FF06325BC645400EF2822 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E6FF06225BC645400EF2822 /* TestView.xib */; };
 		1E6FF06625BC64D700EF2822 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FF06525BC64D700EF2822 /* Button.swift */; };
 		1E6FF06925BC65F500EF2822 /* ColorCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FF06825BC65F500EF2822 /* ColorCatalog.swift */; };
 		1E8BDFCB25C5A0530042DDA1 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1E8BDFCA25C5A0530042DDA1 /* Alamofire */; };
 		1E8BDFCE25C5A0D30042DDA1 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8BDFCD25C5A0D30042DDA1 /* UserAPI.swift */; };
 		1EC05BBA25C6A78F00E98E2A /* TaskAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC05BB925C6A78F00E98E2A /* TaskAPI.swift */; };
 		1EC05BBD25C6D07F00E98E2A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC05BBC25C6D07F00E98E2A /* Storage.swift */; };
+		1EC3C60925CEAFC0007A6BE6 /* QuarterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC3C60825CEAFC0007A6BE6 /* QuarterView.swift */; };
+		1EC3C60D25CEAFE2007A6BE6 /* Pointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC3C60C25CEAFE2007A6BE6 /* Pointer.swift */; };
 		1ED45F2E25BEC3BB007BB211 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED45F2D25BEC3BB007BB211 /* User.swift */; };
 		1ED45F3125BEC42C007BB211 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED45F3025BEC42C007BB211 /* Task.swift */; };
 		1ED45F3625BEC87B007BB211 /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED45F3525BEC87B007BB211 /* UsersTableViewCell.swift */; };
@@ -41,19 +42,20 @@
 		1E6FF02725BB2EC600EF2822 /* SharedFlatOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SharedFlatOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E6FF02A25BB2EC600EF2822 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E6FF02C25BB2EC600EF2822 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1E6FF02E25BB2EC600EF2822 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1E6FF02E25BB2EC600EF2822 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1E6FF03125BB2EC600EF2822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E6FF03325BB2ECA00EF2822 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E6FF03625BB2ECA00EF2822 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E6FF03825BB2ECA00EF2822 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E6FF05F25BB358C00EF2822 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
-		1E6FF06225BC645400EF2822 /* TestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		1E6FF06525BC64D700EF2822 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		1E6FF06825BC65F500EF2822 /* ColorCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCatalog.swift; sourceTree = "<group>"; };
 		1E8BDFCD25C5A0D30042DDA1 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		1E9AEB4525C9B67B006B15D4 /* SharedFlatOrganizer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SharedFlatOrganizer.entitlements; sourceTree = "<group>"; };
 		1EC05BB925C6A78F00E98E2A /* TaskAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAPI.swift; sourceTree = "<group>"; };
 		1EC05BBC25C6D07F00E98E2A /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		1EC3C60825CEAFC0007A6BE6 /* QuarterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterView.swift; sourceTree = "<group>"; };
+		1EC3C60C25CEAFE2007A6BE6 /* Pointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pointer.swift; sourceTree = "<group>"; };
 		1ED45F2D25BEC3BB007BB211 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1ED45F3025BEC42C007BB211 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		1ED45F3525BEC87B007BB211 /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
@@ -94,28 +96,61 @@
 				1E9AEB4525C9B67B006B15D4 /* SharedFlatOrganizer.entitlements */,
 				1E6FF02A25BB2EC600EF2822 /* AppDelegate.swift */,
 				1E6FF02C25BB2EC600EF2822 /* SceneDelegate.swift */,
-				1E6FF02E25BB2EC600EF2822 /* ViewController.swift */,
+				1EC3C61025CEB04C007A6BE6 /* Controller */,
 				1E6FF03025BB2EC600EF2822 /* Main.storyboard */,
 				1E6FF03325BB2ECA00EF2822 /* Assets.xcassets */,
 				1E6FF03525BB2ECA00EF2822 /* LaunchScreen.storyboard */,
 				1E6FF03825BB2ECA00EF2822 /* Info.plist */,
-				1E6FF05F25BB358C00EF2822 /* ClockView.swift */,
-				1E6FF06225BC645400EF2822 /* TestView.xib */,
-				1E6FF06525BC64D700EF2822 /* Button.swift */,
-				1E6FF06825BC65F500EF2822 /* ColorCatalog.swift */,
+				1EC3C60725CEAFAC007A6BE6 /* Views */,
+				1EC3C61425CEB2BC007A6BE6 /* Misc */,
 				1ED45F3325BEC865007BB211 /* Models */,
+				1EC3C61325CEB2B0007A6BE6 /* API */,
+			);
+			path = SharedFlatOrganizer;
+			sourceTree = "<group>";
+		};
+		1EC3C60725CEAFAC007A6BE6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1E698CE325C01DCF006773B2 /* AllTaskTableViewCell.swift */,
+				1E6FF05F25BB358C00EF2822 /* ClockView.swift */,
+				1E6FF06525BC64D700EF2822 /* Button.swift */,
 				1ED45F3525BEC87B007BB211 /* UsersTableViewCell.swift */,
-				1ED45F3825BEC8A6007BB211 /* Misc.swift */,
 				1E698CD625BED948006773B2 /* TaskTag.swift */,
 				1E698CD925BF00A8006773B2 /* YourTaskTableViewCell.swift */,
-				1E698CDC25BF265E006773B2 /* OnboardingViewController.swift */,
 				1E698CDF25BF2A51006773B2 /* TextField.swift */,
-				1E698CE325C01DCF006773B2 /* AllTaskTableViewCell.swift */,
+				1EC3C60825CEAFC0007A6BE6 /* QuarterView.swift */,
+				1EC3C60C25CEAFE2007A6BE6 /* Pointer.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1EC3C61025CEB04C007A6BE6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1E6FF02E25BB2EC600EF2822 /* MainViewController.swift */,
+				1E698CDC25BF265E006773B2 /* OnboardingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1EC3C61325CEB2B0007A6BE6 /* API */ = {
+			isa = PBXGroup;
+			children = (
 				1E8BDFCD25C5A0D30042DDA1 /* UserAPI.swift */,
 				1EC05BB925C6A78F00E98E2A /* TaskAPI.swift */,
 				1EC05BBC25C6D07F00E98E2A /* Storage.swift */,
 			);
-			path = SharedFlatOrganizer;
+			path = API;
+			sourceTree = "<group>";
+		};
+		1EC3C61425CEB2BC007A6BE6 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				1E6FF06825BC65F500EF2822 /* ColorCatalog.swift */,
+				1ED45F3825BEC8A6007BB211 /* Misc.swift */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 		1ED45F3325BEC865007BB211 /* Models */ = {
@@ -190,7 +225,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E6FF06325BC645400EF2822 /* TestView.xib in Resources */,
 				1E6FF03725BB2ECA00EF2822 /* LaunchScreen.storyboard in Resources */,
 				1E6FF03425BB2ECA00EF2822 /* Assets.xcassets in Resources */,
 				1E6FF03225BB2EC600EF2822 /* Main.storyboard in Resources */,
@@ -209,9 +243,10 @@
 				1E8BDFCE25C5A0D30042DDA1 /* UserAPI.swift in Sources */,
 				1E6FF06625BC64D700EF2822 /* Button.swift in Sources */,
 				1E6FF06925BC65F500EF2822 /* ColorCatalog.swift in Sources */,
+				1EC3C60D25CEAFE2007A6BE6 /* Pointer.swift in Sources */,
 				1EC05BBD25C6D07F00E98E2A /* Storage.swift in Sources */,
 				1E698CE025BF2A51006773B2 /* TextField.swift in Sources */,
-				1E6FF02F25BB2EC600EF2822 /* ViewController.swift in Sources */,
+				1E6FF02F25BB2EC600EF2822 /* MainViewController.swift in Sources */,
 				1ED45F3925BEC8A6007BB211 /* Misc.swift in Sources */,
 				1E698CE425C01DCF006773B2 /* AllTaskTableViewCell.swift in Sources */,
 				1E6FF06025BB358C00EF2822 /* ClockView.swift in Sources */,
@@ -219,6 +254,7 @@
 				1E6FF02B25BB2EC600EF2822 /* AppDelegate.swift in Sources */,
 				1ED45F3125BEC42C007BB211 /* Task.swift in Sources */,
 				1E698CDA25BF00A8006773B2 /* YourTaskTableViewCell.swift in Sources */,
+				1EC3C60925CEAFC0007A6BE6 /* QuarterView.swift in Sources */,
 				1E6FF02D25BB2EC600EF2822 /* SceneDelegate.swift in Sources */,
 				1ED45F3625BEC87B007BB211 /* UsersTableViewCell.swift in Sources */,
 				1ED45F2E25BEC3BB007BB211 /* User.swift in Sources */,

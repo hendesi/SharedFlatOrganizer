@@ -22,13 +22,10 @@ struct TaskAPI {
             .response { response in
                 do {
                     guard let data = response.data else { fatalError() }
-                    print("tasks")
-                    print(response.debugDescription)
                     let tasks = try JSONDecoder().decode(TaskWrapper.self, from: data).data
                     Storage.shared.tasks = tasks
                     success(tasks)
                 } catch {
-                    fatalError(error.localizedDescription)
                     failure(error)
                 }
             }
@@ -41,8 +38,6 @@ struct TaskAPI {
                     return failure(nil)
                 }
                 do {
-                    print("initial tasks")
-                    print(response.debugDescription)
                     let users = try JSONDecoder().decode(UsersWrapper.self, from: data).data
                     success(users)
                 } catch {
@@ -52,7 +47,7 @@ struct TaskAPI {
     }
     
     static func getAngles(for users: [User]) -> [ObservableAngle] {
-        var users = users.sorted { $0.name < $1.name }
+        let users = users.sorted { $0.name < $1.name }
         var observableAngles: [ObservableAngle] = []
         let start: Double = 45
         let quarter: Double = 90

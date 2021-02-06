@@ -12,9 +12,9 @@ import UIKit
 struct UserAPI {
     
     private static var demoUsers: [User] = [
-        User(name: "Basti", pictureData: UIImage(named: "doneIcon")?.jpeg(.low)),
-        User(name: "Lukas", pictureData: UIImage(named: "doneIcon")?.jpeg(.low)),
-        User(name: "Elias", pictureData: UIImage(named: "doneIcon")?.jpeg(.low))
+        User(name: "Basti", pictureData: UIImage(systemName: "person.fill")?.jpeg(.low)),
+        User(name: "Lukas", pictureData: UIImage(systemName: "person.fill")?.jpeg(.low)),
+        User(name: "Elias", pictureData: UIImage(systemName: "person.fill")?.jpeg(.low))
     ]
     
     static func createUser(_ user: User, success: @escaping ((User?) -> Void), failure: @escaping ((Error?) -> Void)) {
@@ -24,7 +24,6 @@ struct UserAPI {
                     return failure(nil)
                 }
                 do {
-                    print(user)
                     guard let user = try JSONDecoder().decode(UsersWrapper.self, from: data).data.first else { fatalError() }
                     Storage.shared.user = user
                     success(user)
@@ -41,10 +40,7 @@ struct UserAPI {
                     return failure(nil)
                 }
                 do {
-                    print(response.debugDescription)
                     let users = try JSONDecoder().decode(UsersWrapper.self, from: data).data
-                    print("abc")
-                    print(users)
                     success(users)
                 } catch {
                     failure(error)
@@ -59,7 +55,6 @@ struct UserAPI {
                 return failure(nil)
             }
             do {
-                print(response.debugDescription)
                 let users = try JSONDecoder().decode(UsersWrapper.self, from: data).data
                 success(users)
             } catch {
@@ -76,7 +71,6 @@ struct UserAPI {
                     return failure(nil)
                 }
                 do {
-                    print(response.debugDescription)
                     let users = try JSONDecoder().decode(UsersWrapper.self, from: data).data
                     success(users)
                 } catch {
@@ -107,12 +101,5 @@ struct UserAPI {
         }, failure: { _ in
             fatalError()
         })
-    }
-    
-    static func getDummyData() {
-        AF.request("http://127.0.0.1:8080/v1/api/dummy/users")
-            .response { response in
-                print(response.debugDescription)
-            }
     }
 }
