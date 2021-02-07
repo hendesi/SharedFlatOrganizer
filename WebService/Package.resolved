@@ -23,8 +23,8 @@
         "package": "Apodini",
         "repositoryURL": "https://github.com/Apodini/Apodini.git",
         "state": {
-          "branch": "develop",
-          "revision": "4ad8eaff975ede98d30d436c7e5e5c76e7b80faf",
+          "branch": "demo/databaseAccess",
+          "revision": "436b1e190af2ea14a4affe06c000eca24106dc9f",
           "version": null
         }
       },

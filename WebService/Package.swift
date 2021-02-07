@@ -16,7 +16,7 @@ let package = Package(
     ],
     dependencies: [
 //        .package(name: "Apodini", path: "../Apodini"),
-        .package(url: "https://github.com/Apodini/Apodini.git", .branch("develop")),
+        .package(url: "https://github.com/Apodini/Apodini.git", .branch("demo/databaseAccess")),
 //        .package(name: "ApodiniDatabase", path: "../ApodiniDatabase")
     ],
     targets: [
