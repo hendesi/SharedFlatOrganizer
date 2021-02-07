@@ -34,6 +34,8 @@ struct TestWebService: Apodini.WebService {
             .addMigrations(CreateUser())
         ExporterConfiguration()
                     .exporter(RESTInterfaceExporter.self)
+        HTTPConfiguration()
+            .address(.hostname("0.0.0.0", port: 8080))
     }
 }
  
