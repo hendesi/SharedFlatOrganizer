@@ -12,14 +12,14 @@ import NIO
 
 struct RegisterDeviceHandler: Handler {
     @Parameter(.http(.path))
-    var userId: User.IDValue
+    var deviceID: String
 
     @Environment(\.notificationCenter)
     var notificationCenter: ApodiniNotifications.NotificationCenter
     
     func handle() throws -> EventLoopFuture<Response<String>> {
         notificationCenter
-            .register(device: Device(id: userId.uuidString, type: .apns, topics: []))
+            .register(device: Device(id: deviceID, type: .apns, topics: []))
             .transform(to: Apodini.Response.final("success"))
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import Apodini
 import ApodiniDatabase
+import ApodiniNotifications
 import Fluent
 import NIO
 
@@ -20,6 +21,9 @@ struct UpdateTasksForUserHandler: Handler {
     
     @Apodini.Environment(\.database)
     var database: Database
+    
+    @Environment(\.notificationCenter)
+    var notificationCenter: ApodiniNotifications.NotificationCenter
     
     @Environment(\.eventLoopGroup)
     private var eventLoopGroup: EventLoopGroup
@@ -39,7 +43,13 @@ struct UpdateTasksForUserHandler: Handler {
                 try updateFollowingUser()
             ]
         ).flatMap { _ in
-            User.query(on: database).all()
+            return notificationCenter.getAllDevices().flatMap { devices in
+                let device = devices[0]
+                let alert = Alert(title: "New Task", subtitle: nil, body: "You have been assigned a new task")
+                return notificationCenter.send(notification: .init(alert: alert, payload: nil), to: device).flatMap { _ in
+                    User.query(on: database).all()
+                }
+            }
         }
     }
     

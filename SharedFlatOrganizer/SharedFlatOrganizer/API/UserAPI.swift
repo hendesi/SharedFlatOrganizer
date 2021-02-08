@@ -88,7 +88,9 @@ struct UserAPI {
                     TaskAPI.setInitialTasksFor(users, success: { usersWithTasks  in
                         let sortedUsers = usersWithTasks.sorted { $0.name < $1.name }
                         Storage.shared.user = sortedUsers.first(where: { $0.id == (Storage.shared.user?.id ?? UUID()) })
-                        completion(sortedUsers)
+                        Self.registerDevice(completion: { _ in
+                            completion(sortedUsers)
+                        })
                     }, failure: { _ in
                         fatalError()
                     })
@@ -101,5 +103,15 @@ struct UserAPI {
         }, failure: { _ in
             fatalError()
         })
+    }
+    
+    static func registerDevice(completion: @escaping ((Bool) -> Void)) {
+        AF.request("http://abc123.local:8080/v1/api/devices/a1dc9c505cee0ef67df9fef5dc378ee0911b9eb5901266d7bf34403ad2d169f6", method: .post)
+            .response { response in
+                guard let data = response.data else {
+                    fatalError("failed while registering device")
+                }
+                completion(true)
+            }
     }
 }

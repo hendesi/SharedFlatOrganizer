@@ -1,10 +1,12 @@
 import Apodini
 import ApodiniDatabase
+import ApodiniNotifications
 import Foundation
 import ApodiniREST
 
 struct TestWebService: Apodini.WebService {
     @PathParameter var userId: UUID
+    @PathParameter var deviceID: String
     
     var content: some Component {
         Group("api", "users") {
@@ -26,6 +28,10 @@ struct TestWebService: Apodini.WebService {
             UpdateUsersWithInitialTasksHandler()
                 .operation(.update)
         }
+        Group("api", "devices", $deviceID) {
+            RegisterDeviceHandler(deviceID: $deviceID)
+                .operation(.create)
+        }
     }
     
     var configuration: Configuration {
@@ -36,6 +42,11 @@ struct TestWebService: Apodini.WebService {
                     .exporter(RESTInterfaceExporter.self)
         HTTPConfiguration()
             .address(.hostname("0.0.0.0", port: 8080))
+        APNSConfiguration(
+            .pem(pemPath: "/Users/felixdesiderato/Documents/Uni/3. Semester/Server-side Swift/ExampleProject/WebService/dev.pem"),
+            topic: "de.tum.in.ase.apodinidatabaseexampleapp",
+            environment: .sandbox
+        )
     }
 }
  

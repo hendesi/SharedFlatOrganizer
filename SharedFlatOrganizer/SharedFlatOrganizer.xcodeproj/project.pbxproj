@@ -54,6 +54,7 @@
 		1E6FF06825BC65F500EF2822 /* ColorCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCatalog.swift; sourceTree = "<group>"; };
 		1E8BDFCD25C5A0D30042DDA1 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		1E9AEB4525C9B67B006B15D4 /* SharedFlatOrganizer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SharedFlatOrganizer.entitlements; sourceTree = "<group>"; };
+		1EADB4A525D0716F00F8A0C4 /* SharedFlatOrganizerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SharedFlatOrganizerDebug.entitlements; sourceTree = "<group>"; };
 		1EC05BB925C6A78F00E98E2A /* TaskAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAPI.swift; sourceTree = "<group>"; };
 		1EC05BBC25C6D07F00E98E2A /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		1EC3C60825CEAFC0007A6BE6 /* QuarterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterView.swift; sourceTree = "<group>"; };
@@ -111,6 +112,7 @@
 		1E6FF02925BB2EC600EF2822 /* SharedFlatOrganizer */ = {
 			isa = PBXGroup;
 			children = (
+				1EADB4A525D0716F00F8A0C4 /* SharedFlatOrganizerDebug.entitlements */,
 				1E9AEB4525C9B67B006B15D4 /* SharedFlatOrganizer.entitlements */,
 				1E6FF02A25BB2EC600EF2822 /* AppDelegate.swift */,
 				1E6FF02C25BB2EC600EF2822 /* SceneDelegate.swift */,
@@ -477,7 +479,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SharedFlatOrganizer/SharedFlatOrganizer.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SharedFlatOrganizer/SharedFlatOrganizerDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7PLLZ436SG;
