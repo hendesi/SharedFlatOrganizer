@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import SVProgressHUD
 
 class MainViewController: UIViewController {
 
@@ -147,6 +148,7 @@ class MainViewController: UIViewController {
     
     @objc func didTapFinishButton() {
         let user = Storage.shared.user
+        SVProgressHUD.show()
         UserAPI.updateUser(user, success: { users in
             guard let currentUserID = Storage.shared.user?.id,
                   let newCurrentUser = users.first(where: { $0.id == currentUserID })
@@ -157,6 +159,7 @@ class MainViewController: UIViewController {
             self.overallUsers = users
             
             self.updateViews()
+            SVProgressHUD.dismiss()
         }, failure: { error in
             
         })

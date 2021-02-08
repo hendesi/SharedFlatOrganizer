@@ -18,7 +18,7 @@ struct UserAPI {
     ]
     
     static func createUser(_ user: User, success: @escaping ((User?) -> Void), failure: @escaping ((Error?) -> Void)) {
-        AF.request("http://abc123.local:8080/v1/api/users/", method: .post, parameters: [user], encoder: JSONParameterEncoder.default)
+        AF.request("http://felix.local:8080/v1/api/users/", method: .post, parameters: [user], encoder: JSONParameterEncoder.default)
             .response { response in
                 guard let data = response.data else {
                     return failure(nil)
@@ -34,7 +34,7 @@ struct UserAPI {
     }
     
     static func createDemoUsers(_ users: [User], success: @escaping (([User]) -> Void), failure: @escaping ((Error?) -> Void)) {
-        AF.request("http://abc123.local:8080/v1/api/users/", method: .post, parameters: users, encoder: JSONParameterEncoder.default)
+        AF.request("http://felix.local:8080/v1/api/users/", method: .post, parameters: users, encoder: JSONParameterEncoder.default)
             .response { response in
                 guard let data = response.data else {
                     return failure(nil)
@@ -50,7 +50,7 @@ struct UserAPI {
     
     static func getUsers(success: @escaping (([User]) -> Void), failure: @escaping ((Error?) -> Void)) {
         guard let currentUserId = Storage.shared.user?.id else { return failure(nil) }
-        AF.request("http://abc123.local:8080/v1/api/users/\(currentUserId)").response { response in
+        AF.request("http://felix.local:8080/v1/api/users/\(currentUserId)").response { response in
             guard let data = response.data else {
                 return failure(nil)
             }
@@ -65,7 +65,7 @@ struct UserAPI {
     
     static func updateUser(_ user: User?, success: @escaping (([User]) -> Void), failure: @escaping ((Error?) -> Void)) {
         guard let user = user else { return failure(nil) }
-        AF.request("http://abc123.local:8080/v1/api/users/" + user.id.uuidString, method: .put, parameters: Storage.shared.finishedTasks, encoder: JSONParameterEncoder.default)
+        AF.request("http://felix.local:8080/v1/api/users/" + user.id.uuidString, method: .put, parameters: Storage.shared.finishedTasks, encoder: JSONParameterEncoder.default)
             .response { response in
                 guard let data = response.data else {
                     return failure(nil)
@@ -106,9 +106,9 @@ struct UserAPI {
     }
     
     static func registerDevice(completion: @escaping ((Bool) -> Void)) {
-        AF.request("http://abc123.local:8080/v1/api/devices/a1dc9c505cee0ef67df9fef5dc378ee0911b9eb5901266d7bf34403ad2d169f6", method: .post)
+        AF.request("http://felix.local:8080/v1/api/devices/a1dc9c505cee0ef67df9fef5dc378ee0911b9eb5901266d7bf34403ad2d169f6", method: .post)
             .response { response in
-                guard let data = response.data else {
+                guard response.data != nil else {
                     fatalError("failed while registering device")
                 }
                 completion(true)

@@ -34,7 +34,8 @@ struct UpdateTasksForUserHandler: Handler {
     @Throws(.notFound, reason: "Could not retrieve users id")
     private var idNotFoundError: ApodiniError
     
-    
+    private let alertTitle: String = "New Task"
+    private let alertBody: String = "You have been assigned a new task"
     
     func handle() throws -> EventLoopFuture<[User]> {
         eventLoopGroup.next().flatten(
@@ -43,9 +44,9 @@ struct UpdateTasksForUserHandler: Handler {
                 try updateFollowingUser()
             ]
         ).flatMap { _ in
-            return notificationCenter.getAllDevices().flatMap { devices in
+            notificationCenter.getAllDevices().flatMap { devices in
                 let device = devices[0]
-                let alert = Alert(title: "New Task", subtitle: nil, body: "You have been assigned a new task")
+                let alert = Alert(title: alertTitle, subtitle: nil, body: alertBody)
                 return notificationCenter.send(notification: .init(alert: alert, payload: nil), to: device).flatMap { _ in
                     User.query(on: database).all()
                 }

@@ -18,7 +18,7 @@ struct TaskAPI {
     ]
     
     static func createTasks(success: @escaping (([Task]) -> Void), failure: @escaping ((Error?) -> Void)) {
-        AF.request("http://abc123.local:8080/v1/api/tasks/", method: .post, parameters: defaultTasks, encoder: JSONParameterEncoder.default)
+        AF.request("http://felix.local:8080/v1/api/tasks/", method: .post, parameters: defaultTasks, encoder: JSONParameterEncoder.default)
             .response { response in
                 do {
                     guard let data = response.data else { fatalError() }
@@ -32,7 +32,7 @@ struct TaskAPI {
     }
     
     static func setInitialTasksFor(_ users: [User], success: @escaping (([User]) -> Void), failure: @escaping ((Error?) -> Void)) {
-        AF.request("http://abc123.local:8080/v1/api/tasks/", method: .put, parameters: users, encoder: JSONParameterEncoder.default)
+        AF.request("http://felix.local:8080/v1/api/tasks/", method: .put, parameters: users, encoder: JSONParameterEncoder.default)
             .response { response in
                 guard let data = response.data else {
                     return failure(nil)
